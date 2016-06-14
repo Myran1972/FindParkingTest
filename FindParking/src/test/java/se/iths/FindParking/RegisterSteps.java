@@ -1,5 +1,6 @@
 package se.iths.FindParking;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -30,19 +31,11 @@ public class RegisterSteps extends AbstractSteps{
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("rg-username")));
 		element.click();
 		element.clear();
-		element.sendKeys("M");
-		element.sendKeys("a");
-		element.sendKeys("r");
-		element.sendKeys("i");
-		element.sendKeys("a");
-		element.sendKeys(" ");
-		element.sendKeys("R");
-		element.sendKeys("u");
-		element.sendKeys("n");
-		element.sendKeys("s");
-		element.sendKeys("t");
-		element.sendKeys("e");
-		element.sendKeys("n");
+		for (int i = 0; i < name.length(); i++){
+	        char c = name.charAt(i);
+	        String s = new StringBuilder().append(c).toString();
+	        element.sendKeys(s);
+	    }       
 	}
 	
 	@When("^I will write my email \"([^\"]*)\"$")
@@ -50,18 +43,11 @@ public class RegisterSteps extends AbstractSteps{
 		WebElement element = driver.findElement(By.id("rg-useremail"));
 		element.click();
 		element.clear();
-		element.sendKeys("m");
-		element.sendKeys("y");
-		element.sendKeys("r");
-		element.sendKeys("a");
-		element.sendKeys("n");
-		element.sendKeys("1");
-		element.sendKeys("9");
-		element.sendKeys("72");
-		element.sendKeys("@");
-		element.sendKeys("hot");
-		element.sendKeys("mail");
-		element.sendKeys(".com");
+		for (int i = 0; i < email.length(); i++){
+	        char c = email.charAt(i);
+	        String s = new StringBuilder().append(c).toString();
+	        element.sendKeys(s);
+	    }   
 	}
 
 	@When("^I will write my password \"([^\"]*)\"$")
@@ -69,7 +55,11 @@ public class RegisterSteps extends AbstractSteps{
 		WebElement element = driver.findElement(By.id("rg-password"));
 		element.click();
 		element.clear();
-		element.sendKeys(pw1);
+		for (int i = 0; i < pw1.length(); i++){
+	        char c = pw1.charAt(i);
+	        String s = new StringBuilder().append(c).toString();
+	        element.sendKeys(s);
+	    }   
 	}
 
 	@When("^I will repeat my password \"([^\"]*)\"$")
@@ -77,15 +67,29 @@ public class RegisterSteps extends AbstractSteps{
 		WebElement element = driver.findElement(By.id("rg-repeat-password"));
 		element.click();
 		element.clear();
-		element.sendKeys(pw2);
+		for (int i = 0; i < pw2.length(); i++){
+	        char c = pw2.charAt(i);
+	        String s = new StringBuilder().append(c).toString();
+	        element.sendKeys(s);
+	    }   
 	}
 
 	@When("^I will push on Register$")
 	public void i_will_push_on_Register() throws Throwable {
+		driver.findElement(By.id("rg-confirm-btn-account")).click();
 	}
-
-	@Then("^I will be logged in to my account$")
-	public void i_will_be_logged_in_to_my_account() throws Throwable {
+	
+	@Then("^I will see my name \"([^\"]*)\" so I know I am logged in to my account$")
+	public void i_will_see_my_name_so_I_know_I_am_logged_in_to_my_account(String arg1) throws Throwable {
+		Thread.sleep(3000);
+		WebElement element = driver.findElement(By.xpath("/html/body/find-parking-goteborg-app/nav/div/div[2]/ul[2]/li/a"));
+	    Assert.assertEquals(arg1, element.getText());
 	}
-
+	
+	@Then("^I will see message \"([^\"]*)\"$")
+	public void i_will_see_message(String arg1) throws Throwable {
+	    Thread.sleep(3000);
+	    WebElement element = driver.findElement(By.xpath("/html/body/find-parking-goteborg-app/router-outlet[2]/div/div/div/div/account-feedback/span"));
+	    Assert.assertEquals(arg1, element.getText());
+	}
 }

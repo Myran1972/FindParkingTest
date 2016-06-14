@@ -12,7 +12,7 @@ public class CucumberInit extends AbstractSteps{
 	@Before
 	public void setup(){
 		System.setProperty("webdriver.chrome.driver", "C:/Selenium/chromedriver.exe");  
-		  driver = new ChromeDriver();  
+		driver = new ChromeDriver();  
 		//driver = new FirefoxDriver();
 	}
 	
