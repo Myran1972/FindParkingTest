@@ -58,7 +58,7 @@
 #And I will write my password "password"
 #And I will repeat my password "password"
 #And I will push on Register
-#Then I will see message "User name is too short"
+#Then I will see message "User name is missing"
 #
 #Scenario: register without email
 #Given I am on home page

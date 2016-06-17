@@ -80,12 +80,12 @@ public class LoginSteps extends AbstractSteps{
 	   wait.until(ExpectedConditions. textToBePresentInElement((By.cssSelector("#lg-account-form > div.lg-reset-pass-form.col-xs-12 > account-feedback > span")), arg1));
 	}
 	
-	@Given("^I am logged in$")
-	public void i_am_logged_in() throws Throwable {
+	@Given("^I am logged in as \"([^\"]*)\" and password \"([^\"]*)\"$")
+	public void i_am_logged_in_as_and_password(String arg1, String arg2) throws Throwable {
 		RegisterSteps.i_am_on_home_page();
 		i_choose_Login_in_menu();
-		i_will_write_my_useremail("myran1972@hotmail.com");
-		i_will_write_my_userpassword("password");
+		i_will_write_my_useremail(arg1);
+		i_will_write_my_userpassword(arg2);
 		i_will_push_on_Login();
 	}
 
@@ -100,7 +100,7 @@ public class LoginSteps extends AbstractSteps{
 
 	@Then("^I will be logged out$")
 	public void i_will_be_logged_out() throws Throwable {
-		Thread.sleep(3000);
+		Thread.sleep(7000);
 	    WebElement element = driver.findElement(By.linkText("Login"));
 	    Assert.assertEquals("Login", element.getText());
 	}

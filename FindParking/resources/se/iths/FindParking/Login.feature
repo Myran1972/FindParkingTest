@@ -32,8 +32,16 @@
 #And I will push on Reset
 #Then I will see error message "Error: The specified user does not exist."
 #
+#Scenario: forgot password with no email
+#Given I am on home page
+#And I choose Login in menu
+#When I click on Forgot password?
+#And I will write my useremail to reset ""
+#And I will push on Reset
+#Then I will see error message "No email found."
+#
 #Scenario: Logout
-#Given I am logged in
+#Given I am logged in as "myran1972@hotmail.com" and password "password"
 #When I logout
 #Then I will be logged out
-#
+
