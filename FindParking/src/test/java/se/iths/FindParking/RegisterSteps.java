@@ -14,14 +14,14 @@ import cucumber.api.java.en.When;
 public class RegisterSteps extends AbstractSteps{
 
 	@Given("^I am on home page$")
-	public void i_am_on_home_page() throws Throwable {
+	public static void i_am_on_home_page() throws Throwable {
 		driver.get("localhost:4200");
 	}
 
 	@Given("^I choose Register in menu$")
 	public void i_choose_Register_in_menu() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/find-parking-goteborg-app/nav/div/div[2]/ul[2]/li[1]/a")));
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Register")));
 		element.click();
 	}
 
@@ -80,7 +80,7 @@ public class RegisterSteps extends AbstractSteps{
 	}
 	
 	@Then("^I will see my name \"([^\"]*)\" so I know I am logged in to my account$")
-	public void i_will_see_my_name_so_I_know_I_am_logged_in_to_my_account(String arg1) throws Throwable {
+	public static void i_will_see_my_name_so_I_know_I_am_logged_in_to_my_account(String arg1) throws Throwable {
 		Thread.sleep(3000);
 		WebElement element = driver.findElement(By.xpath("/html/body/find-parking-goteborg-app/nav/div/div[2]/ul[2]/li/a"));
 	    Assert.assertEquals(arg1, element.getText());
