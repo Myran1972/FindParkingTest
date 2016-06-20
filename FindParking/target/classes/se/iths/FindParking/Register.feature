@@ -1,6 +1,6 @@
 Feature: register
 
-Scenario: register with email
+Scenario: register with email #Obs! Måste tas bort i Firebase efter varje körning
 Given I am on home page
 And I choose Register in menu
 When I will write my name "Maria Runsten"
